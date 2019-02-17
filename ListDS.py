@@ -49,7 +49,34 @@ class ListDS:
 		prev.nextval=current
 		current.nextval=temp
 		
+	def removeFromBeginning(self):
+		self.headval=self.headval.nextval	
+		
+	def  removeFromEnd(self):
+		current=self.headval
+		prev=self.headval
+		while current.nextval is not None:
+			prev=current
+			current=current.nextval
+		prev.nextval=None
 	
+	def removeFromSpecificPosition(self,pos):
+		current=self.headval
+		prev=self.headval
+		count=0
+		while current.nextval is not None:
+			if count == pos:
+				break
+			prev=current
+			current=current.nextval
+			count+=1
+			
+		
+		prev.nextval=current.nextval
+				
+				
+		
+		
 list1 = ListDS()
 list1.headval = Node("Mon")
 e2 = Node("Tues")
@@ -58,16 +85,32 @@ list1.headval.nextval = e2
 e2.nextval = e3
 list1.printList()
 print("List length before adding new node at the beginning: ",list1.length())
+
 e4=Node("Sun")
 list1.addToBeginning(e4)
 list1.printList()
 print("List length after adding new node at the beginning: ",list1.length())
+
 e5=Node("Thur")
 list1.addToTheEnd(e5)
 list1.printList()
 print("List length after adding new node at the end: ",list1.length())
+
 e6=Node("Fri")
 pos=3
 list1.insertAtSpecificPosition(e6,pos)
 list1.printList()
 print("List length after adding new node at the position: ",pos,list1.length())
+
+list1.removeFromBeginning()
+list1.printList()
+print("List length after removing node from beginning: ",list1.length())
+
+list1.removeFromEnd()
+list1.printList()
+print("List length after removing node from end: ",list1.length())
+
+pos=2
+list1.removeFromSpecificPosition(pos)
+list1.printList()
+print("List length after removing node from the position: ",pos,list1.length())
